@@ -74,4 +74,6 @@ its node.
 UI; `etc/bridge` names the bridge of an image. `validate.yml` runs the unit
 tests (`tests/test_*.py`); the `Publish images` workflow runs the Robot suite
 on NS8 QEMU VMs: it installs matrix-reworked (image in `tests/base-image`)
-and all six bridges.
+and all six bridges. `tests/base-image` names a matrix-reworked branch image
+while a change of its appservice API is under review, and
+`ghcr.io/platypuschan/matrix-reworked:latest` otherwise.
