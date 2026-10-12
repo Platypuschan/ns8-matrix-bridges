@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+
+# The matrix-changed event and restores run configure-module on the module
+# itself.
+set -e
+exec 1>&2
+redis-exec SADD "${AGENT_ID}/roles/selfadm" configure-module

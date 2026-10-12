@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+
+# Remove the appservice registration from the homeserver module.
+
+import os
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), "..", "..", "pypkg"))
+import bridge_runtime
+
+if not bridge_runtime.unregister():
+    print("The appservice registration was not removed (homeserver module gone?)", file=sys.stderr)

@@ -1,0 +1,59 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Get the bridge settings",
+    "$id": "http://nethserver.org/json-schema/task/output/matrix-bridges/get-configuration",
+    "examples": [
+        {
+            "bridge": "whatsapp",
+            "name": "WhatsApp",
+            "bot": "@whatsappbot:example.org",
+            "matrix_module": "matrix-reworked1",
+            "server_name": "example.org",
+            "registered": true,
+            "telegram_api_id": "",
+            "telegram_api_hash_set": false,
+            "heisenbridge_owner": ""
+        }
+    ],
+    "type": "object",
+    "required": [
+        "bridge",
+        "name",
+        "bot",
+        "matrix_module",
+        "server_name",
+        "registered",
+        "telegram_api_id",
+        "telegram_api_hash_set",
+        "heisenbridge_owner"
+    ],
+    "properties": {
+        "bridge": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "bot": {
+            "type": "string"
+        },
+        "matrix_module": {
+            "type": "string"
+        },
+        "server_name": {
+            "type": "string"
+        },
+        "registered": {
+            "type": "boolean"
+        },
+        "telegram_api_id": {
+            "type": "string"
+        },
+        "telegram_api_hash_set": {
+            "type": "boolean"
+        },
+        "heisenbridge_owner": {
+            "type": "string"
+        }
+    }
+}

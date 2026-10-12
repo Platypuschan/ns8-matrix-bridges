@@ -1,0 +1,17 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Configure the Matrix bridge",
+    "$id": "http://nethserver.org/json-schema/task/input/matrix-bridges/configure-module",
+    "description": "Connect the bridge to the matrix-reworked module of this node. Telegram needs an API ID and hash; Heisenbridge can have an owner.",
+    "examples": [
+        {},
+        {"telegram_api_id": "12345", "telegram_api_hash": "0123456789abcdef0123456789abcdef"},
+        {"heisenbridge_owner": "@alice:example.org"}
+    ],
+    "type": "object",
+    "properties": {
+        "telegram_api_id": {"type": "string", "maxLength": 20},
+        "telegram_api_hash": {"type": "string", "maxLength": 64, "description": "Empty keeps the stored hash"},
+        "heisenbridge_owner": {"type": "string", "maxLength": 255}
+    }
+}

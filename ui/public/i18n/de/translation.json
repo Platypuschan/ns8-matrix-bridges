@@ -1,0 +1,75 @@
+{
+  "error": {
+    "403": "Operation nicht zugelassen",
+    "cannot_retrieve_installed_modules": "installierte Module nicht abrufbar",
+    "401": "fehlerhafte Anmeldung",
+    "cannot_retrieve_module_info": "Modulinfo nicht abrufbar",
+    "generic_error": "Etwas ist schief gegangen",
+    "error": "Fehler",
+    "network_timeout": "Netzwerk Timeout",
+    "404": "Ressource nicht gefunden",
+    "network_error": "Netzwerkfehler",
+    "validation_error": "Fehlerhafte Prüfung"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "save": "Speichern",
+    "connect": "Mit Matrix verbinden",
+    "configuring": "Wird konfiguriert",
+    "instance_configuration": "Matrix-Bridge konfigurieren",
+    "description": "Diese Bridge meldet sich beim Modul matrix-reworked auf demselben Knoten an. Benutzer dieses Servers starten einen Chat mit dem Bot unten und senden \"help\" oder \"login\".",
+    "matrix_module": "Matrix-Modul",
+    "not_connected": "Noch nicht verbunden",
+    "bot": "Bridge-Bot",
+    "bot_helper": "Einen Direktchat mit diesem Benutzer starten.",
+    "telegram_description": "Die Telegram-Bridge braucht eine API-ID und einen API-Hash von https://my.telegram.org/apps.",
+    "telegram_api_id": "Telegram-API-ID",
+    "telegram_api_hash": "Telegram-API-Hash",
+    "telegram_api_hash_set": "Ein Hash ist gespeichert; leer lassen, um ihn zu behalten.",
+    "telegram_api_id_required": "Erforderlich: die numerische API-ID",
+    "telegram_api_hash_required": "Erforderlich",
+    "heisenbridge_owner": "Besitzer (optional)",
+    "heisenbridge_owner_helper": "Matrix-ID, die die IRC-Bridge verwaltet, z. B. @alice:example.org. Leer: Der erste lokale Benutzer, der @heisenbridge schreibt, wird Besitzer.",
+    "invalid_user_id": "Muss eine Matrix-Benutzer-ID sein, z. B. @alice:example.org",
+    "matrix_module_not_found": "Zuerst das Modul matrix-reworked auf diesem Knoten installieren.",
+    "matrix_module_not_configured": "Zuerst das Modul matrix-reworked konfigurieren.",
+    "appservice_rejected": "Das Matrix-Modul hat die Anmeldung der Bridge abgelehnt; siehe Task-Protokoll."
+  },
+  "common": {
+    "required": "erforderlich",
+    "work_in_progress": "In Arbeit",
+    "processing": "Ausführung..."
+  },
+  "status": {
+    "created": "erstellt",
+    "size": "Größe",
+    "name": "Name",
+    "no_images": "Keine Abbilder",
+    "app_volumes": "App Volumen | App Volumen",
+    "services": "Dienst | Dienste",
+    "app_images": "App-Abbild | App-Abbilder",
+    "no_services": "Keine Dienste",
+    "app_instance": "App-Instanz",
+    "mount": "Einbindepunkt",
+    "title": "Status",
+    "installation_node": "Knoten der Installation",
+    "node": "Knoten",
+    "no_volumes": "keine Volumen"
+  },
+  "about": {
+    "title": "Über"
+  },
+  "action": {
+    "list-backup-repositories": "Liste der Datensicherungs-Speicherort",
+    "get-module-info": "Informationen zum Modul abrufen",
+    "list-installed-modules": "installierte Module auflisten",
+    "list-backups": "Datensicherungen auflisten",
+    "get-status": "Status abfragen",
+    "configure-module": "Modul konfigurieren",
+    "get-configuration": "Konfiguration abrufen",
+    "get-name": "Name abrufen"
+  },
+  "task": {
+    "cannot_create_task": "{task} kann nicht erstellt werden"
+  }
+}

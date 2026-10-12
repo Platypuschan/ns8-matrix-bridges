@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+
+# The homeserver module changed (restore, new port, server settings): read
+# its details again and restart the bridge if its configuration changed.
+
+import json
+import os
+import subprocess
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), "..", "..", "pypkg"))
+import bridge_runtime
+import bridge_setup
+
+try:
+    event = json.load(sys.stdin)
+except (json.JSONDecodeError, TypeError):
+    sys.exit(0)
+state = bridge_runtime.read_state()
+if not state or event.get("module_id") != state.get("matrix_module"):
+    sys.exit(0)
+
+info = bridge_setup.bridge_info()
+with bridge_setup.settings_lock():
+    try:
+        bridge_runtime.sync(info, bridge_setup.ensure_settings(info), int(os.environ["TCP_PORT"]))
+    except bridge_runtime.BridgeError as error:
+        print(f"Bridge resync failed: {error}", file=sys.stderr)
+        sys.exit(0)
+if os.path.exists(bridge_setup.RESTART_FLAG):
+    subprocess.run(["systemctl", "--user", "try-restart", "bridge.service"], check=False)
+    os.remove(bridge_setup.RESTART_FLAG)
