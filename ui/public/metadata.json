@@ -1,0 +1,21 @@
+{
+  "name": "matrix-bridges",
+  "description": {
+    "en": "Matrix bridge (built per bridge).",
+    "de": "Matrix-Bridge (je Bridge gebaut)."
+  },
+  "categories": [
+    "collaboration"
+  ],
+  "authors": [
+    {
+      "name": "Platypuschan"
+    }
+  ],
+  "docs": {
+    "documentation_url": "https://github.com/Platypuschan/ns8-matrix-bridges#readme",
+    "bug_url": "https://github.com/Platypuschan/ns8-matrix-bridges/issues",
+    "code_url": "https://github.com/Platypuschan/ns8-matrix-bridges"
+  },
+  "source": "ghcr.io/platypuschan/matrix-whatsapp"
+}

@@ -1,0 +1,48 @@
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+
+#
+# The Matrix bridge of this module. state/data holds its configuration,
+# registration and SQLite database; unit.env names image, binary, arguments
+# and network (bridge_setup.unit_env). The image entrypoint is not used: it
+# would switch to an unprivileged UID whose files the module agent cannot
+# read; the bridge runs as root of the rootless container, i.e. as the
+# module user. Most bridges share the host network namespace to reach
+# Synapse on 127.0.0.1; an isolated bridge (Steam) gets its own namespace
+# with the host loopback mapped to 169.254.1.3.
+#
+
+[Unit]
+Description=Matrix bridge
+
+[Service]
+Environment=PODMAN_SYSTEMD_UNIT=%n
+EnvironmentFile=%E/state/environment
+EnvironmentFile=%E/state/unit.env
+WorkingDirectory=%E/state
+Restart=always
+RestartSec=10s
+TimeoutStartSec=900
+TimeoutStopSec=40
+ExecStartPre=/bin/rm -f %t/bridge.pid %t/bridge.ctr-id
+ExecStart=/usr/bin/podman run --conmon-pidfile %t/bridge.pid \
+    --cidfile %t/bridge.ctr-id --cgroups=no-conmon \
+    --replace -d --name bridge \
+    $BRIDGE_NET \
+    --user=0:0 \
+    --volume %E/state/data:/data:Z \
+    --workdir /data \
+    --entrypoint ${BRIDGE_BINARY} \
+    ${BRIDGE_IMAGE} \
+    $BRIDGE_ARGS
+ExecStop=/usr/bin/podman stop --ignore --cidfile %t/bridge.ctr-id -t 30
+ExecStopPost=/usr/bin/podman rm --ignore -f --cidfile %t/bridge.ctr-id
+# Heisenbridge runs as PID 1 and ignores SIGTERM: podman kills it
+SuccessExitStatus=137 143
+SyslogIdentifier=%u
+PIDFile=%t/bridge.pid
+Type=forking
+
+[Install]
+WantedBy=default.target

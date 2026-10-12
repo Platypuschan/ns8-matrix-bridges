@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+
+# New release: write the configuration for it and restart the bridge (the
+# bridge image may have changed, too).
+
+import os
+import subprocess
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), "..", "pypkg"))
+import bridge_runtime
+import bridge_setup
+
+subprocess.run(["systemctl", "--user", "daemon-reload"], check=True)
+if bridge_runtime.read_state():
+    info = bridge_setup.bridge_info()
+    with bridge_setup.settings_lock():
+        try:
+            bridge_runtime.sync(info, bridge_setup.ensure_settings(info), int(os.environ["TCP_PORT"]))
+        except bridge_runtime.BridgeError as error:
+            print(f"Bridge sync failed: {error}", file=sys.stderr)
+    subprocess.run(["systemctl", "--user", "try-restart", "bridge.service"], check=True)
+    try:
+        os.remove(bridge_setup.RESTART_FLAG)
+    except FileNotFoundError:
+        pass

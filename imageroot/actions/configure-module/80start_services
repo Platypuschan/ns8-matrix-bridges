@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+
+set -e
+exec 1>&2
+
+systemctl --user daemon-reload
+systemctl --user enable bridge.service
+systemctl --user reset-failed bridge.service || true
+if ! systemctl --user is-active --quiet bridge.service; then
+    systemctl --user start bridge.service
+elif [[ -e bridge-restart-needed ]]; then
+    systemctl --user restart bridge.service
+fi
+rm -f bridge-restart-needed
