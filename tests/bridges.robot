@@ -91,7 +91,7 @@ Install bridge
 *** Test Cases ***
 Install the Matrix module
     Put File    ${CURDIR}/matrix_client.py    /root/matrix_client.py
-    ${base} =    Get File    ${CURDIR}/base-image
+    ${base} =    OperatingSystem.Get File    ${CURDIR}/base-image
     ${base} =    Strip String    ${base}
     ${id} =    Add module    ${base}
     Set Suite Variable    ${matrix_id}    ${id}
